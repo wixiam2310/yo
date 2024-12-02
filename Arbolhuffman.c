@@ -118,5 +118,31 @@ void printCodes(MinHeapNode* root, int arr[], int top) {
 
     // Recursión en el subárbol izquierdo
     arr[top] = 0;
-    printC
+    printCodes(root->left, arr, top + 1);
+
+    // Recursión en el subárbol derecho
+    arr[top] = 1;
+    printCodes(root->right, arr, top + 1);
+}
+
+// Función principal
+int main() {
+    // Caracteres y sus frecuencias
+    char data[] = {'w', 'i', 'l', 'a', 'm'};
+    int freq[] = {1, 2, 2, 1, 1};
+    int size = sizeof(data) / sizeof(data[0]);
+
+    // Construir el árbol de Huffman
+    MinHeap* minHeap = buildHuffmanTree(data, freq, size);
+
+    // Arreglo para almacenar el código de cada carácter
+    int arr[100];
+    int top = 0;
+
+    // Imprimir los códigos de Huffman
+    printf("Códigos de Huffman:\n");
+    printCodes(minHeap->array[0], arr, top);
+
+    return 0;
+}
 
